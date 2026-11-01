@@ -70,6 +70,20 @@ main{padding-block:22px 30px}
 .row.head span:last-child{text-align:right}
 
 .cards{display:flex;flex-direction:column;gap:22px}
+.nav{display:none}
+@media (hover:hover) and (pointer:fine){.nav{display:flex;position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border:0;border-radius:50%;align-items:center;justify-content:center;background:var(--surface);color:var(--ink);font:700 20px/1 var(--font-display);cursor:pointer;box-shadow:0 1px 6px rgba(21,31,69,.25)}.nav.prev{left:10px}.nav.next{right:10px}.nav[hidden]{display:none}}
+@media (min-width:1000px){
+.inner{max-width:1040px}
+.summary .rows{max-width:620px}
+.cards{gap:28px}
+.card{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr)}
+.media{min-height:420px}
+.gallery{position:absolute;inset:0}
+.gallery img{aspect-ratio:auto;height:100%}
+.body{padding:26px 26px 22px}
+h1{font-size:34px}
+}
+
 .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;scroll-margin-top:12px}
 .media{position:relative}
 .gallery{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;background:#17214D}
@@ -212,6 +226,15 @@ footer .site{display:block;margin-top:6px;font:500 18px var(--font-display);colo
   <p class="trust">20 de ani experiență · acte verificate · <a href="mailto:contact@imobiliarem.ro">contact@imobiliarem.ro</a></p>
 </div></div></footer>
 
+<script>(function(){document.querySelectorAll('.media').forEach(function(m){var g=m.querySelector('.gallery'),c=m.querySelector('.count'),n=g.children.length;if(n<2)return;
+function idx(){return Math.round(g.scrollLeft/g.clientWidth)}
+function upd(){var i=idx();if(c)c.textContent=(i+1)+'/'+n;p.hidden=i===0;x.hidden=i===n-1}
+function go(d){g.scrollTo({left:(idx()+d)*g.clientWidth,behavior:'smooth'})}
+var p=document.createElement('button'),x=document.createElement('button');
+p.className='nav prev';x.className='nav next';p.type=x.type='button';p.textContent='‹';x.textContent='›';p.setAttribute('aria-label','Fotografia anterioară');x.setAttribute('aria-label','Fotografia următoare');
+p.onclick=function(){go(-1)};x.onclick=function(){go(1)};m.appendChild(p);m.appendChild(x);
+g.addEventListener('scroll',function(){clearTimeout(g._t);g._t=setTimeout(upd,60)});upd()})})();
+</script>
 <script>/* Notițe client: mesaje între client și Vlad, pe fiecare ofertă.
    CFG este injectat la build: {client, clientName, api, demo, pageUrl, offers:[{n,address}]} */
 (function () {
