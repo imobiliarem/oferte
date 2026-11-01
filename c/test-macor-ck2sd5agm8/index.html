@@ -231,14 +231,15 @@ footer .site{display:block;margin-top:6px;font:500 18px var(--font-display);colo
 
   /* ---------- cheia lui Vlad: vine din linkul din e-mail (#k=...) ---------- */
   var KEYSTORE = 'macor-owner-key';
-  (function () {
+  function takeKey() {                         // 0 = nu era cheie în adresă, -1 = cheie fără ofertă, n = oferta n
     var m = /[#&]k=([A-Za-z0-9]+)/.exec(location.hash || '');
-    if (m && !CFG.demo) {
-      set(KEYSTORE, m[1]);
-      var o = /[#&]o=(\d+)/.exec(location.hash);
-      try { history.replaceState(null, '', location.pathname + location.search + (o ? '#oferta-' + o[1] : '')); } catch (e) {}
-    }
-  })();
+    if (!m || CFG.demo) return 0;
+    set(KEYSTORE, m[1]);
+    var o = /[#&]o=(\d+)/.exec(location.hash);
+    try { history.replaceState(null, '', location.pathname + location.search + (o ? '#oferta-' + o[1] : '')); } catch (e) {}
+    return o ? +o[1] : -1;
+  }
+  var jump = takeKey();
   var ownerKey = CFG.demo ? '' : (get(KEYSTORE) || '');
   var role = CFG.demo ? (get('macor-demo-role') || 'c') : (ownerKey ? 'v' : 'c');   // c = client, v = Vlad
 
@@ -533,7 +534,17 @@ footer .site{display:block;margin-top:6px;font:500 18px var(--font-display);colo
     renderAll();
     refresh().then(function () { return flush(); });
   }
+  function goNotes(n) { setTimeout(function () { var b = $('#n-' + n); if (b) b.scrollIntoView({ block: 'start' }); }, 400); }
   start();
+  if (jump > 0) goNotes(jump);
+  window.addEventListener('hashchange', function () {      // linkul din e-mail apăsat cu pagina deja deschisă
+    var j = takeKey();
+    if (!j) return;
+    ownerKey = get(KEYSTORE) || '';
+    role = ownerKey ? 'v' : 'c';
+    start();
+    if (j > 0) goNotes(j);
+  });
 
   if (!CFG.demo) {
     setInterval(function () { if (document.visibilityState === 'visible') { flush(); refresh(); } }, 20000);
