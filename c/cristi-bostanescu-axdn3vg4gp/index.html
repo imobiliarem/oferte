@@ -9,23 +9,23 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap">
 <style>
-/* Layout: antet alb cu logo navy și filet cărămiziu, rezumat „Pe scurt”, carduri pe fond cald, notițe client în fiecare card, bandă albastră de contact la final, ca planșa de credențiale Macor. */
+/* Layout: antet alb cu logo navy și filet bleu, rezumat „Pe scurt”, carduri pe fond cald, notițe client în fiecare card, bandă albastră de contact la final, ca planșa de credențiale Macor. */
 :root{
   --band:#FFFFFF; --band-ink:#233775; --band-muted:#5B6180;
   --bg:#FBFAF7; --surface:#FFFFFF; --ink:#151F45; --muted:#5B6180; --line:#E6E3DA;
   --accent:#233775; --accent-ink:#FFFFFF; --tint:#F3F0E8;
-  --gold:#9A3B2B; --gold-text:#9A3B2B; --gold-ink:#FFFFFF; --gold-light:#E29A82; --danger:#B3261E;
+  --gold:#3E6FA3; --gold-text:#3E6FA3; --gold-ink:#FFFFFF; --gold-light:#A9CBEB; --danger:#B3261E;
   --font-display:"Montserrat","Helvetica Neue",Arial,sans-serif;
   --font-body:Arial,"Helvetica Neue",Helvetica,sans-serif;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#0E1430; --surface:#161E41; --ink:#EEF0FA; --muted:#A1A9C9; --line:#2A3562;
   --accent:#9DB0FF; --accent-ink:#0E1430; --tint:#1D2751;
-  --gold:#E29A82; --gold-text:#E29A82; --gold-ink:#151F45; --danger:#FF8A80; color-scheme:dark}}
+  --gold:#A9CBEB; --gold-text:#A9CBEB; --gold-ink:#151F45; --danger:#FF8A80; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#0E1430; --surface:#161E41; --ink:#EEF0FA; --muted:#A1A9C9; --line:#2A3562;
   --accent:#9DB0FF; --accent-ink:#0E1430; --tint:#1D2751;
-  --gold:#E29A82; --gold-text:#E29A82; --gold-ink:#151F45; --danger:#FF8A80; color-scheme:dark}
+  --gold:#A9CBEB; --gold-text:#A9CBEB; --gold-ink:#151F45; --danger:#FF8A80; color-scheme:dark}
 *{box-sizing:border-box}
 @media (prefers-reduced-motion: no-preference){html{scroll-behavior:smooth}}
 body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.5;-webkit-text-size-adjust:100%}
@@ -152,14 +152,14 @@ textarea::placeholder{color:var(--muted)}
 .fine{margin:20px 2px 0;font-size:13px;color:var(--muted);max-width:60ch}
 
 footer.contact{background:#233775;color:#fff;padding-block:30px 34px;border-top:5px solid var(--gold)}
-footer .lbl{color:#E29A82;letter-spacing:.28em;margin:0 0 6px}
+footer .lbl{color:#A9CBEB;letter-spacing:.28em;margin:0 0 6px}
 footer .phone{display:inline-block;font:700 clamp(32px,10.5vw,46px)/1.1 var(--font-display);font-variant-numeric:tabular-nums;color:#fff;text-decoration:none}
 footer .site{display:block;margin-top:6px;font:500 18px var(--font-display);color:#fff;text-decoration:none}
 .who{margin-top:26px;display:flex;flex-direction:column}
-.who i{display:block;width:48px;height:4px;background:#E29A82;margin-bottom:12px}
+.who i{display:block;width:48px;height:4px;background:#A9CBEB;margin-bottom:12px}
 .who .first{font:500 17px var(--font-display);letter-spacing:.34em;text-transform:uppercase}
 .who .last{font:800 27px/1.15 var(--font-display);letter-spacing:.06em;text-transform:uppercase}
-.who .role{font:600 11.5px var(--font-display);letter-spacing:.14em;text-transform:uppercase;color:#E29A82;margin-top:6px}
+.who .role{font:600 11.5px var(--font-display);letter-spacing:.14em;text-transform:uppercase;color:#A9CBEB;margin-top:6px}
 .trust{margin:24px 0 0;font-size:13px;color:#C9D1F0}
 .trust a{color:inherit}
 
